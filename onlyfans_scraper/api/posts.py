@@ -46,6 +46,9 @@ def scrape_timeline_posts(headers, model_id, timestamp=0) -> list:
                 return posts
             posts += scrape_timeline_posts(
                 headers, model_id, posts[-1]['postedAtPrecise'])
+            with open('posts.txt', 'w') as f:
+                for post in posts:
+                    f.write(str(post) + '\n')
             return posts
         r.raise_for_status()
 
